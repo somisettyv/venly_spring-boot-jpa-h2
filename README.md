@@ -1,4 +1,4 @@
-# venky_spring-boot-jpa-h2
+# spring-boot-jpa-h2
 
 This Repo to demonstrate how to use the Spring Hibernate JPA works within Spring 4. This sample repo has few very simple 
 UseCases such as adding new Employees to a deportment, retrieving all Employees from a given Department.
