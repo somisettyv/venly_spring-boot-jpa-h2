@@ -43,3 +43,40 @@ H2 DB Set up :
      ./gradlew bootRun
 
 
+Few Implementation Notes:
+
+Add the following DB Driver details in Application.properties 
+
+             server.port=9093
+
+            # create and drop tables and sequences, loads import.sql
+            spring.jpa.hibernate.ddl-auto=update
+
+
+            spring.datasource.username=
+            spring.datasource.password=
+
+            spring.datasource.name=test
+            spring.datasource.driverClassName=org.h2.Driver
+
+            spring.datasource.initialize=false
+            spring.datasource.url=jdbc:h2:file:~/test;DB_CLOSE_ON_EXIT=FALSE;IFEXISTS=TRUE;DB_CLOSE_DELAY=-1;
+
+            spring.jpa.hibernate.ddl-auto = update
+
+
+DAO Layer :
+
+     public interface DepartmentRepository extends CrudRepository<Department, Long>
+     
+     One to Many  : Department to Employee 
+     
+          @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "department")
+      	  List<Employee> employees;
+          
+     Many to One   : 
+         
+         	@ManyToOne(fetch = FetchType.LAZY)
+             @JoinColumn(name = "depno", nullable = false)
+	        Department department;
+
